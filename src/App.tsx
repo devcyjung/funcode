@@ -7,12 +7,12 @@ import {usePrefersDark} from './dom/usePrefersDark.tsx'
 
 function App() {
     const [count, setCount] = useState(0)
-    const isPrefDark = usePrefersDark()
+    const doesPreferDark = usePrefersDark()
     return (
         <>
             <div className='bg-gray-100'>
                 <a href='https://vite.dev' target='_blank'>
-                    <img src={viteLogo} className='logo' alt='Vite logo'/>
+                    <img src={viteLogo} className='logo' alt='Vite logo' />
                 </a>
                 <a href='https://react.dev' target='_blank'>
                     <img
@@ -24,13 +24,12 @@ function App() {
             </div>
             <h1>
                 Do you prefer dark mode?:{' '}
-                {isPrefDark !== null ? isPrefDark.toString() : ''}
+                {doesPreferDark !== null ? doesPreferDark.toString() : ''}
             </h1>
-            <Performance/>
+            <Performance />
             <div className='card'>
                 <button onClick={() => setCount((count) => count + 1)}>
-                    count : {count}{' '}
-                    <br/>
+                    count : {count} <br />
                     src/App.===tsx
                 </button>
                 <p>

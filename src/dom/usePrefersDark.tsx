@@ -1,22 +1,21 @@
-import {useCallback, useEffect, useState} from 'react'
+import {useSyncExternalStore} from 'react'
 
-export function usePrefersDark() {
-    const [pref, setPref] = useState<boolean | null>(null)
-    const setPrefWrapper = useCallback((e: MediaQueryListEvent): void => {
-        setPref(e.matches)
-    }, [])
-    useEffect(() => {
-        setPref(window.matchMedia('(prefers-color-scheme: dark)').matches)
-    }, [])
-    useEffect(() => {
+export function usePrefersDark(): boolean {
+    const subscribePrefersDark: (cb: () => void) => () => void = (
+        cb: () => void
+    ): (() => void) => {
         window
             .matchMedia('(prefers-color-scheme: dark)')
-            .addEventListener('change', setPrefWrapper)
-        return () => {
+            .addEventListener('change', cb)
+        return (): void => {
             window
                 .matchMedia('(prefers-color-scheme: dark)')
-                .removeEventListener('change', setPrefWrapper)
+                .removeEventListener('change', cb)
         }
-    }, [setPrefWrapper])
-    return pref
+    }
+    const getPrefersDarkSnapshot: () => boolean = (): boolean => {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches
+    }
+
+    return useSyncExternalStore(subscribePrefersDark, getPrefersDarkSnapshot)
 }
