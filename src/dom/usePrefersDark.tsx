@@ -1,8 +1,6 @@
 import {useSyncExternalStore} from 'react'
 
-const subscribePrefersDark: (cb: () => void) => () => void = (
-    cb: () => void
-): (() => void) => {
+function subscribePrefersDark(cb: () => void): () => void {
     window
         .matchMedia('(prefers-color-scheme: dark)')
         .addEventListener('change', cb)
@@ -13,7 +11,7 @@ const subscribePrefersDark: (cb: () => void) => () => void = (
     }
 }
 
-const getPrefersDarkSnapshot: () => boolean = (): boolean => {
+function getPrefersDarkSnapshot(): boolean {
     return window.matchMedia('(prefers-color-scheme: dark)').matches
 }
 

@@ -1,13 +1,24 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Vite + React + TS</title>
-    </head>
-    <body>
-        <div id="root"></div>
-        <script type="module" src="/src/main.tsx"></script>
-    </body>
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+</head>
+<body>
+<nav
+    class="flex h-[3.2rem] justify-center"
+>
+    <div
+        class="max-w-[13ch] min-w-[5ch] h-full bg-amber-500 text-yellow-100 flex justify-center items-center">
+        <p class="line-clamp-2 break-words">Abc</p>
+    </div>
+</nav>
+<main
+    id="root"
+    class="max-w-[1280px] text-center bg-linear-to-b from-orange-400 to-purple-500 bg-no-repeat bg-origin-border bg-center bg-[2px_auto] space-y-10 [&_*]:space-y-10"
+></main>
+<script type="module" src="/src/index.tsx"></script>
+</body>
 </html>

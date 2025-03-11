@@ -5,7 +5,7 @@ import App from './App.tsx'
 import {assertDefined} from './pure/assertDefined.ts'
 
 const root = document.getElementById('root')
-assertDefined<HTMLElement | null>(root)
+assertDefined<HTMLElement | null>('root', root)
 
 createRoot(root).render(
     <StrictMode>
