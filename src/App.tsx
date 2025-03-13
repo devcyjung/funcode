@@ -1,11 +1,14 @@
 import {useState} from 'react'
+import closeButton from '/close.svg'
 import reactLogo from '/react.svg'
 import viteLogo from '/vite.svg'
 import {Performance} from './pure/Performance.tsx'
 import {usePrefersDark} from './dom/usePrefersDark.tsx'
+import {NBSP} from './constants/domConstants.ts'
 
 function App() {
     const [count, setCount] = useState(0)
+    const [message, setMessage] = useState('')
     const doesPreferDark = usePrefersDark()
     return (
         <>
@@ -29,9 +32,37 @@ function App() {
                 Do you prefer dark mode?:{' '}
                 {doesPreferDark !== null ? doesPreferDark.toString() : ''}
             </h1>
-            <Performance />
+
+            <form className="">
+                <input
+                    type="text"
+                    onChange={(e) => {
+                        setMessage(e.target.value)
+                    }}
+                    value={message}
+                    className=" border-3 border-gray-600 h-[1.5lh] w-[30ch] bg-gray-200 text-gray-600 p-[0.5ch]"
+                />
+                <img
+                    src={closeButton}
+                    alt="Reset input"
+                    className="bg-gray-500 rounded-full w-[1em]"
+                />
+            </form>
+
+            <p>
+                {message.replaceAll(' ', NBSP)}
+            </p>
+
+            <Performance>
+                <Performance>
+                    <button>Click</button>
+                </Performance>
+            </Performance>
             <div>
-                <button onClick={() => setCount((count) => count + 1)}>
+                <button
+                    onClick={() => setCount((count) => count + 1)}
+                    className="rounded-lg border-1 border-transparent px-[1.2em] py-[0.6em] text-base font-medium font-[inherit] bg-gray-50 dark:bg-zinc-900 cursor-pointer transition-[border-color] duration-250 hover:border-indigo-400"
+                >
                     count : {count}
                 </button>
                 <p>
